@@ -23,8 +23,14 @@ BlackParrot v2.0 was released in January 2024 and has been up and running in the
 BlackParrot v2.1 was released in November 2025
 
 Currently supported:
-- RV64IMAFDCSU\_Zfencei\_Zicsr User Mode 20191213 extensions with Privilege Mode 1.11 support
+- RV64IMAFDC with Zifencei and Zicsr (User ISA 20191213), plus M/S/U privilege modes
+  and Sv39 virtual memory (Privilege Mode 1.11 support)
 - Baseline user and privileged functionality to run Linux, SPEC and other standard workloads
+- Cache-block instructions have partial support: `cbo.zero` is decoded; `cbo.clean`,
+  `cbo.inval`, and `cbo.flush` are illegal with the microcoded CCE. `menvcfg` and
+  `senvcfg` are unimplemented, so full Zicbom/Zicboz support is not claimed.
+- Zba/Zbb/Zbs instructions are decoded, but the default configuration marks their
+  bit-manipulation support buggy pending stabilization.
 - Configuration scaling up to a 16-core+ cache coherent multicore with distributed LLC
 - Configuration scaling down to an size-optimized single core with < 16 KiB total SRAM
 - Experimental micro-coded BP-BedRock cache coherence support (not fully featured)
